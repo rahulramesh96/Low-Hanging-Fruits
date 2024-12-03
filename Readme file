@@ -1,10 +1,39 @@
 Windows Privesc Enumeration (Low-hanging Fruits)
 
-# Check Systeminfo, google the for exploits.
+# System Enumeration
+
+## Check Systeminfo, google for exploits.
 systeminfo | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type"
 
-# How well it is patched? (Quick Fix Engineering) Googlethe Latest KB for vulnerabilities
+## How well it is patched? (Quick Fix Engineering) Googlethe Latest KB for vulnerabilities
 wmic qfe get Caption,Description,HotFixID,InstalledOn
 
-# Other available drives?
+## Other available drives?
 wmic logicaldisk get caption,description,providername
+
+# User Enumeration
+
+## Token Impersonations? 
+whoami /priv
+whoami /groups
+
+## Users on the machine (for more details, run -> net user $user)
+net user
+
+## Check localgroups for administrators
+net localgroup administrators
+
+# Network Enumeration
+
+## Run ipconfig
+ipconfig /all
+
+## Look for the ports below 0.0.0.0:XXXX, how many showed up in your port scan?
+netstat -ano
+
+# Password Hunting
+
+## Find cleartext passwords in files
+dir /s /b C:\*.txt C:\*.ini C:\*.config C:\*.xml | findstr /si password
+findstr /spin "password" *.*
+
