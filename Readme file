@@ -1,0 +1,10 @@
+Windows Privesc Enumeration (Low-hanging Fruits)
+
+# Check Systeminfo, google the for exploits.
+systeminfo | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type"
+
+# How well it is patched? (Quick Fix Engineering) Googlethe Latest KB for vulnerabilities
+wmic qfe get Caption,Description,HotFixID,InstalledOn
+
+# Other available drives?
+wmic logicaldisk get caption,description,providername
